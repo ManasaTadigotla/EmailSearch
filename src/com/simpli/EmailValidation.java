@@ -8,7 +8,7 @@ import java.util.regex.PatternSyntaxException;
 
 public class EmailValidation {
 
-	public static void main(String[] args) 
+	public static void main(String[] args) throws PatternSyntaxException
 	{
 		
 		String check = null;
@@ -25,23 +25,12 @@ public class EmailValidation {
 	    check=inputEmail.next();
 	    boolean isFound=false;
 	    for(int i=0;i<email.size();i++)
-	    {
-	    	try
-	    	{
+	    {	    
+	    	//checks with case insensivity
 	    	Pattern p = Pattern.compile(email.get(i),Pattern.CASE_INSENSITIVE);
 			Matcher c = p.matcher(check);
-			isFound=c.matches();
-	    	}
-	    	catch (PatternSyntaxException e) 
-	    	{
-	    		System.out.println("Sorry pattern doesnot match");
-	    		
-			}
-	    	finally 
-	    	{
-	    		email.clear();
-	    		inputEmail.close();
-			}
+			isFound=c.matches();	    	
+	    	
 			if(isFound)
 				System.out.println("This email exists");
 			else
